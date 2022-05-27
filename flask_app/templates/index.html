@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="container">
+
+    <section class="text-center mt-4">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-primary">Object Detection using TF Serving and Flask</h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- Basic form with file input and submit button -->
+    <section class="text-center mt-5">
+        <div class="row">
+            <div class="col-8 offset-2">
+                <form method="POST" enctype="multipart/form-data">
+                    <input class="form-control" type="file" name="file">
+                    <button class="btn btn-primary primary mt-1" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Show warning if an invalid file was selected -->
+    {% if show_warning %}
+    <div class="alert alert-danger mt-3" role="alert">
+        Invalid file. Only .jpg, .jpeg or .png files are allowed.
+    </div>
+    {% else %}
+    {% endif %}
+
+</div>
+
+{% endblock %}

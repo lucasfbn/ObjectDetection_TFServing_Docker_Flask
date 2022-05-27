@@ -1,0 +1,33 @@
+body {
+    font-family: Poppins, sans-serif;
+    --bs-primary: #03314b;
+    --bs-primary-rgb: 3, 49, 75;
+    --bs-secondary: #0d6efd;
+    --bs-secondary-rgb: 13, 110, 253;
+    --bs-light: #3a4649;
+    --bs-light-rgb: 58, 70, 73;
+    --bs-body-bg: #f7f7f8;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  outline: var(--bs-secondary);
+  background-size: 100%, 100%;
+  background-image: none;
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  color: var(--bs-secondary);
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  color: var(--bs-secondary);
+}
+

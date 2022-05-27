@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+
+  flask-app:
+    build: ./flask_app
+
+    # The following is optional (as we have the COPY cmd within the Dockerfile already)
+    # but helpful to see live code changes
+    volumes:
+      - ./flask_app:/app
+    ports:
+      - 8500:5000
+
+    environment:
+      MODEL_NAME: ${MODEL_NAME}
+      TF_SERVING_NETWORK_NAME: ${TF_SERVING_NETWORK_NAME}
+      TF_SERVING_PORT: ${TF_SERVING_PORT}
+
+  tf-serving: # The service name is the host name that is being used by the Flask app
+    image: tensorflow/serving:latest-gpu
+
+    runtime: nvidia
+
+    environment:
+      MODEL_NAME: ${MODEL_NAME}
+      MODEL_VERSION: ${MODEL_VERSION}
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: all
+    
+    volumes:
+      - ./models/${MODEL_NAME}:/models/${MODEL_NAME}/${MODEL_VERSION}
+    
+    ports:
+      - ${TF_SERVING_PORT}:8501
